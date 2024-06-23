@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    container_name: ms-email-container
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ms-email
+    volumes:
+      - ms-email_pg_data:/bitnami/postgresql
+    networks:
+      - ms-user-email-network
+
+volumes:
+  ms-email_pg_data:
+networks:
+  ms-user-email-network:
+    external: true
